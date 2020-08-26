@@ -12,6 +12,7 @@ public class PokersService {
     public String convertPoker(String poker) {
         return poker.replace("K","13")
                 .replace("A","1")
-                .replace("T","10");
+                .replace("T","10")
+                .replace("J","11");
     }
 }
