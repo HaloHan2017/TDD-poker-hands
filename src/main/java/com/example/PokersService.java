@@ -10,9 +10,10 @@ public class PokersService {
     }
 
     public String convertPoker(String poker) {
-        return poker.replace("K","13")
-                .replace("A","1")
-                .replace("T","10")
-                .replace("J","11");
+        return poker.replace("T","10")
+                .replace("J","11")
+                .replace("Q","12")
+                .replace("K","13")
+                .replace("A","1");
     }
 }
