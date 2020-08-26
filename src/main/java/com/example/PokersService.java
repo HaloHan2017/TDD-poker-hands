@@ -29,6 +29,8 @@ public class PokersService {
             return "White wins. - with high card: " + map.get(maxPokerNumberOfWhite);
         }else if(result == 1){
             return "White wins.";
+        }else if (result == 2){
+            return "White wins.";
         }
         return  "";
     }
@@ -44,8 +46,10 @@ public class PokersService {
         int mapOfWhiteSize = mapOfWhite.values().size();
         if (mapOfBlackSize == 5 && mapOfWhiteSize == 5) {
             return 0;
-        } else if (mapOfBlackSize == 5 && mapOfWhiteSize == 4) {// 一对
+        } else if (mapOfBlackSize == 5 && mapOfWhiteSize == 4) {// 0对 vs 1对
             return 1;
+        }else if(mapOfBlackSize == 4 && mapOfWhiteSize == 3){// 1对 vs 2对
+            return 2;
         }
         return null;
     }
