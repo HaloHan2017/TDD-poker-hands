@@ -32,79 +32,66 @@ public class PokerHandsTest {
     @Test
     public void should_return_max_poker_when_get_max_poker_given_pokers() {
         //given
-        String[] pokers = {"2H", "3D", "5S", "9C", "13D"};
+        List<Poker> pokers = Arrays.asList(
+                new Poker("2", "H"),
+                new Poker("3", "D"),
+                new Poker("5", "S"),
+                new Poker("9", "C"),
+                new Poker("13", "D"));
         //when
         PokersService pokersService = new PokersService();
-        String maxPoker = pokersService.getMaxPoker(pokers);
+        Poker maxPoker = pokersService.getMaxPoker(pokers);
         //then
-        assertEquals(maxPoker, "13");
+        assertEquals(maxPoker.getNumber(), "13");
     }
 
     @Test
     public void should_return_13D_when_convert_poker_given_KD() {
         //given
-        String poker = "KD";
+        String poker = "K";
         //when
-        PokersService pokersService = new PokersService();
-        String maxPoker = pokersService.convertPoker(poker);
+        Integer pokerNumber = PokerUtil.convertPoker(poker);
         //then
-        assertEquals(maxPoker, "13D");
+        assertEquals((int) pokerNumber, 13);
     }
 
     @Test
     public void should_return_1D_when_convert_poker_given_AD() {
         //given
-        String poker = "AD";
+        String poker = "A";
         //when
-        PokersService pokersService = new PokersService();
-        String maxPoker = pokersService.convertPoker(poker);
+        Integer pokerNumber = PokerUtil.convertPoker(poker);
         //then
-        assertEquals(maxPoker, "1D");
+        assertEquals((int) pokerNumber, 1);
     }
 
     @Test
     public void should_return_10D_when_convert_poker_given_TD() {
         //given
-        String poker = "TD";
+        String poker = "T";
         //when
-        PokersService pokersService = new PokersService();
-        String maxPoker = pokersService.convertPoker(poker);
+        Integer pokerNumber = PokerUtil.convertPoker(poker);
         //then
-        assertEquals(maxPoker, "10D");
+        assertEquals((int) pokerNumber, 10);
     }
 
     @Test
     public void should_return_11D_when_convert_poker_given_JD() {
         //given
-        String poker = "JD";
+        String poker = "J";
         //when
-        PokersService pokersService = new PokersService();
-        String maxPoker = pokersService.convertPoker(poker);
+        Integer pokerNumber = PokerUtil.convertPoker(poker);
         //then
-        assertEquals(maxPoker, "11D");
+        assertEquals((int) pokerNumber, 11);
     }
 
     @Test
     public void should_return_12D_when_convert_poker_given_QD() {
         //given
-        String poker = "QD";
+        String poker = "Q";
         //when
-        PokersService pokersService = new PokersService();
-        String maxPoker = pokersService.convertPoker(poker);
+        Integer pokerNumber = PokerUtil.convertPoker(poker);
         //then
-        assertEquals(maxPoker, "12D");
-    }
-
-    @Test
-    public void should_return_number_and_type_when_generate_pokers_given_one_dimensional_pokers() {
-        //given
-        String[] pokers = {"2H", "3D", "5S", "9C", "KD"};
-
-        //when
-        PokersService pokersService = new PokersService();
-        String[][] twoDimensionalPoker = pokersService.generatePokers(pokers);
-        //then
-        assertEquals("2", twoDimensionalPoker[0][0]);
-        assertEquals("H", twoDimensionalPoker[0][1]);
+        assertEquals((int) pokerNumber, 12);
     }
 }

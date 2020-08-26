@@ -2,40 +2,22 @@ package com.example;
 
 import java.util.*;
 
+import static com.example.PokerUtil.*;
+
 public class PokersService {
     public String comparePokers(List<Poker> blackPokers, List<Poker> whitePokers) {
         return "White wins. - with high card: Ace";
     }
 
-    public String getMaxPoker(String[] pokers) {
-        String[][] pokerDetail = generatePokers(pokers);
-        List<String> strings = new ArrayList<>();
-        for (int i = 0; i < pokerDetail.length; i++) {
-            strings.add(pokerDetail[i][0]);
+    public Poker getMaxPoker(List<Poker> pokers) {
+        Poker filterPoker = pokers.stream().filter(poker -> poker.getNumber().equals(1)).findFirst().orElse(null);
+        if(filterPoker != null){
+            return filterPoker;
         }
-        Optional<Integer> max = strings.stream().map(Integer::parseInt).max((o1, o2) -> {
-            if (o1==1 || o2==1){
-               return 1;
-            }
-            return o1.compareTo(o2);
-        });
-        return max.get().toString();
-    }
-
-    public String convertPoker(String poker) {
-        return poker.replace("T","10")
-                .replace("J","11")
-                .replace("Q","12")
-                .replace("K","13")
-                .replace("A","1");
-    }
-
-    public String[][] generatePokers(String[] pokers) {
-        String[][] pokerDetail = new String[5][2];
-        for (int i = 0; i < pokers.length; i++) {
-            pokerDetail[i][0] = pokers[i].substring(0, pokers[i].length() - 1);
-            pokerDetail[i][1] = pokers[i].substring(pokers[i].length() - 1);
-        }
-        return pokerDetail;
+        return pokers.stream().max((o1, o2) -> {
+            Integer i1 = convertPoker(o1.getNumber());
+            Integer i2 = convertPoker(o2.getNumber());
+            return i1.compareTo(i2);
+        }).orElse(null);
     }
 }
