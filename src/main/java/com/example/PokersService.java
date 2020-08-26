@@ -3,7 +3,7 @@ package com.example;
 import java.util.*;
 
 public class PokersService {
-    public String comparePokers(String[] blackPokers, String[] whitePokers) {
+    public String comparePokers(List<Poker> blackPokers, List<Poker> whitePokers) {
         return "White wins. - with high card: Ace";
     }
 
