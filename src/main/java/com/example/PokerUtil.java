@@ -1,5 +1,10 @@
 package com.example;
 
+import java.util.List;
+import java.util.Map;
+import java.util.function.Function;
+import java.util.stream.Collectors;
+
 public class PokerUtil {
 
     public static Integer convertPoker(String number) {
@@ -17,5 +22,11 @@ public class PokerUtil {
             default:
                 return Integer.parseInt(number);
         }
+    }
+
+    public static boolean hasOnePair(List<Poker> pokers) {
+        Map<String, Long> map = pokers.stream().map(Poker::getNumber).
+                collect(Collectors.groupingBy(Function.identity(), Collectors.counting()));
+        return pokers.size()-1 == map.size();
     }
 }

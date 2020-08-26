@@ -20,6 +20,16 @@ public class PokersService {
 
     public String comparePokers(List<Poker> blackPokers, List<Poker> whitePokers) {
         Integer result = getCalculateResultOfPokers(blackPokers,whitePokers);
+        int priorityOfBlackPokers = getPriorityOfPokers(blackPokers);
+        int priorityOfWhitePokers = getPriorityOfPokers(whitePokers);
+        if(priorityOfBlackPokers < priorityOfWhitePokers){
+            return "White wins.";
+        }else if(priorityOfBlackPokers > priorityOfWhitePokers){
+            return "Black wins.";
+        }else {
+            // the same priority
+            return null;
+        }
         if(result == 0){
             Integer maxPokerNumberOfBlack = convertPoker(getMaxPoker(blackPokers).getNumber());
             Integer maxPokerNumberOfWhite = convertPoker(getMaxPoker(whitePokers).getNumber());
@@ -35,6 +45,13 @@ public class PokersService {
         return  "";
     }
 
+    private int getPriorityOfPokers(List<Poker> pokers) {
+        if(PokerUtil.hasOnePair(pokers)){
+            return 1;
+        }
+        return 0;
+    }
+
     private Integer getCalculateResultOfPokers(List<Poker> blackPokers, List<Poker> whitePokers) {
         Map<String, Long> mapOfBlack = blackPokers.stream().map(Poker::getNumber).collect(Collectors.groupingBy(Function.identity(), Collectors.counting()));
         Map<String, Long> mapOfWhite = whitePokers.stream().map(Poker::getNumber).collect(Collectors.groupingBy(Function.identity(), Collectors.counting()));
@@ -44,7 +61,7 @@ public class PokersService {
     private Integer judgeByMap(Map<String, Long> mapOfBlack, Map<String, Long> mapOfWhite) {
         int mapOfBlackSize = mapOfBlack.values().size();
         int mapOfWhiteSize = mapOfWhite.values().size();
-        if (mapOfBlackSize == 5 && mapOfWhiteSize == 5) {
+        if (mapOfBlackSize == 5 && mapOfWhiteSize == 5) { // 0对 vs 0对
             return 0;
         } else if (mapOfBlackSize == 5 && mapOfWhiteSize == 4) {// 0对 vs 1对
             return 1;
