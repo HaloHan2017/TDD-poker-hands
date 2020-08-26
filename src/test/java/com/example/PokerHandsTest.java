@@ -1,6 +1,10 @@
 package com.example;
 
 
+import org.junit.Test;
+
+import static org.junit.Assert.assertEquals;
+
 public class PokerHandsTest {
     @Test
     public void should_return_compare_result_when_compare_pokers_given_white_pokers_max() {
@@ -24,4 +28,16 @@ public class PokerHandsTest {
         //then
         assertEquals(maxPoker, "KD");
     }
+
+    @Test
+    public void should_return_13D_when_convert_poker_given_KD() {
+        //given
+        String poker = "KD";
+        //when
+        PokersService pokersService = new PokersService();
+        String maxPoker = pokersService.convertPoker(poker);
+        //then
+        assertEquals(maxPoker, "KD");
+    }
+    
 }

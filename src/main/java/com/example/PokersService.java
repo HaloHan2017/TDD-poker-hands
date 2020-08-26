@@ -8,4 +8,8 @@ public class PokersService {
     public String getMaxPoker(String[] pokers) {
         return "KD";
     }
+
+    public String convertPoker(String poker) {
+        return poker.replace("K","13");
+    }
 }
