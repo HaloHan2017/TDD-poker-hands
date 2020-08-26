@@ -46,7 +46,7 @@ public class PokerHandsTest {
     }
 
     @Test
-    public void should_return_13D_when_convert_poker_given_KD() {
+    public void should_return_13_when_convert_poker_given_K() {
         //given
         String poker = "K";
         //when
@@ -56,7 +56,7 @@ public class PokerHandsTest {
     }
 
     @Test
-    public void should_return_1D_when_convert_poker_given_AD() {
+    public void should_return_14_when_convert_poker_given_A() {
         //given
         String poker = "A";
         //when
@@ -66,7 +66,7 @@ public class PokerHandsTest {
     }
 
     @Test
-    public void should_return_10D_when_convert_poker_given_TD() {
+    public void should_return_10_when_convert_poker_given_T() {
         //given
         String poker = "T";
         //when
@@ -76,7 +76,7 @@ public class PokerHandsTest {
     }
 
     @Test
-    public void should_return_11D_when_convert_poker_given_JD() {
+    public void should_return_11_when_convert_poker_given_J() {
         //given
         String poker = "J";
         //when
@@ -86,7 +86,7 @@ public class PokerHandsTest {
     }
 
     @Test
-    public void should_return_12D_when_convert_poker_given_QD() {
+    public void should_return_12_when_convert_poker_given_Q() {
         //given
         String poker = "Q";
         //when
