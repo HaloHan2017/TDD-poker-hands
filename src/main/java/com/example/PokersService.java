@@ -16,4 +16,8 @@ public class PokersService {
                 .replace("K","13")
                 .replace("A","1");
     }
+
+    public String[][] generatePokers(String[] pokers) {
+        return null;
+    }
 }

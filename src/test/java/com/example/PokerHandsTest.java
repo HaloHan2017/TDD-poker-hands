@@ -37,7 +37,7 @@ public class PokerHandsTest {
         PokersService pokersService = new PokersService();
         String maxPoker = pokersService.convertPoker(poker);
         //then
-        assertEquals(maxPoker, "KD");
+        assertEquals(maxPoker, "13D");
     }
 
     @Test
@@ -84,4 +84,16 @@ public class PokerHandsTest {
         assertEquals(maxPoker, "12D");
     }
 
+    @Test
+    public void should_return_number_and_type_when_generate_pokers_given_one_dimensional_pokers() {
+        //given
+        String[] pokers = {"2H", "3D", "5S", "9C", "KD"};
+
+        //when
+        PokersService pokersService = new PokersService();
+        String[][] twoDimensionalPoker = pokersService.generatePokers(pokers);
+        //then
+        assertEquals("2", twoDimensionalPoker[0][0]);
+        assertEquals("H", twoDimensionalPoker[0][1]);
+    }
 }
