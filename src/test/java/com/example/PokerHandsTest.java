@@ -95,4 +95,23 @@ public class PokerHandsTest {
         assertEquals((int) pokerNumber, 12);
     }
 
+    @Test
+    public void should_return_compare_result_when_compare_pokers_given_one_pair_poker() {
+        //given
+        List<Poker> blackPokers = Arrays.asList(new Poker("2", "H"),
+                new Poker("3", "D"),
+                new Poker("5", "S"),
+                new Poker("9", "C"),
+                new Poker("A", "D"));
+        List<Poker> whitePokers = Arrays.asList(new Poker("3", "H"),
+                new Poker("3", "D"),
+                new Poker("5", "C"),
+                new Poker("9", "C"),
+                new Poker("K", "D"));
+        //when
+        PokersService pokersService = new PokersService();
+        String result = pokersService.comparePokers(blackPokers, whitePokers);
+        //then
+        assertEquals(result, "Black wins. - with high card: Ace");
+    }
 }
