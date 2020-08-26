@@ -19,28 +19,35 @@ public class PokersService {
     }
 
     public String comparePokers(List<Poker> blackPokers, List<Poker> whitePokers) {
-        String calculatedResult = getCalculateResultOfPokers(blackPokers);
-        Integer maxPokerNumberOfBlack = convertPoker(getMaxPoker(blackPokers).getNumber());
-        Integer maxPokerNumberOfWhite = convertPoker(getMaxPoker(whitePokers).getNumber());
-        if (maxPokerNumberOfBlack > maxPokerNumberOfWhite) {
-            return "Black wins. - with high card: " + map.get(maxPokerNumberOfBlack);
+        Integer result = getCalculateResultOfPokers(blackPokers,whitePokers);
+        if(result == 0){
+            Integer maxPokerNumberOfBlack = convertPoker(getMaxPoker(blackPokers).getNumber());
+            Integer maxPokerNumberOfWhite = convertPoker(getMaxPoker(whitePokers).getNumber());
+            if (maxPokerNumberOfBlack > maxPokerNumberOfWhite) {
+                return "Black wins. - with high card: " + map.get(maxPokerNumberOfBlack);
+            }
+            return "White wins. - with high card: " + map.get(maxPokerNumberOfWhite);
+        }else if(result == 1){
+            return "White wins.";
         }
-        return "White wins. - with high card: " + map.get(maxPokerNumberOfWhite);
+        return  "";
     }
 
-    private String getCalculateResultOfPokers(List<Poker> pokers) {
-        Map<String, Long> map = pokers.stream().map(Poker::getNumber).collect(Collectors.groupingBy(Function.identity(), Collectors.counting()));
-        int mapSize = map.values().size();
-        if (mapSize == 5) {
-            return "No Pair";
-        } else if (mapSize == 4) {// 一对
-            for (String key : map.keySet()) {
-                if (map.get(key).longValue() == 2) {
-                    return "With Pair" + key;
-                }
-            }
+    private Integer getCalculateResultOfPokers(List<Poker> blackPokers, List<Poker> whitePokers) {
+        Map<String, Long> mapOfBlack = blackPokers.stream().map(Poker::getNumber).collect(Collectors.groupingBy(Function.identity(), Collectors.counting()));
+        Map<String, Long> mapOfWhite = whitePokers.stream().map(Poker::getNumber).collect(Collectors.groupingBy(Function.identity(), Collectors.counting()));
+        return judgeByMap(mapOfBlack, mapOfWhite);
+    }
+
+    private Integer judgeByMap(Map<String, Long> mapOfBlack, Map<String, Long> mapOfWhite) {
+        int mapOfBlackSize = mapOfBlack.values().size();
+        int mapOfWhiteSize = mapOfWhite.values().size();
+        if (mapOfBlackSize == 5 && mapOfWhiteSize == 5) {
+            return 0;
+        } else if (mapOfBlackSize == 5 && mapOfWhiteSize == 4) {// 一对
+            return 1;
         }
-        return "";
+        return null;
     }
 
     public Poker getMaxPoker(List<Poker> pokers) {
