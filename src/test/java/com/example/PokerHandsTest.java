@@ -62,4 +62,15 @@ public class PokerHandsTest {
         assertEquals(maxPoker, "10D");
     }
 
+    @Test
+    public void should_return_11D_when_convert_poker_given_JD() {
+        //given
+        String poker = "JD";
+        //when
+        PokersService pokersService = new PokersService();
+        String maxPoker = pokersService.convertPoker(poker);
+        //then
+        assertEquals(maxPoker, "11D");
+    }
+
 }
