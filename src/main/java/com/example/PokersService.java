@@ -18,6 +18,11 @@ public class PokersService {
     }
 
     public String[][] generatePokers(String[] pokers) {
-        return null;
+        String[][] pokerDetail = new String[5][2];
+        for (int i = 0; i < pokers.length; i++) {
+            pokerDetail[i][0] = pokers[i].substring(0, pokers[i].length() - 1);
+            pokerDetail[i][1] = pokers[i].substring(pokers[i].length() - 1);
+        }
+        return pokerDetail;
     }
 }
