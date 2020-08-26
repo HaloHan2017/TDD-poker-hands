@@ -13,7 +13,7 @@ public class PokerUtil {
             case "K":
                 return 13;
             case "A":
-                return 1;
+                return 14;
             default:
                 return Integer.parseInt(number);
         }

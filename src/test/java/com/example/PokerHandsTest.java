@@ -62,7 +62,7 @@ public class PokerHandsTest {
         //when
         Integer pokerNumber = PokerUtil.convertPoker(poker);
         //then
-        assertEquals((int) pokerNumber, 1);
+        assertEquals((int) pokerNumber, 14);
     }
 
     @Test
@@ -94,4 +94,5 @@ public class PokerHandsTest {
         //then
         assertEquals((int) pokerNumber, 12);
     }
+
 }
