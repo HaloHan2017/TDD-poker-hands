@@ -17,11 +17,8 @@ public class PokersService {
     }
 
     public String comparePokers(List<Poker> blackPokers, List<Poker> whitePokers) {
-        Poker maxPokerOfBlack = getMaxPoker(blackPokers);
-        Poker maxPokerOfWhite = getMaxPoker(whitePokers);
-        Integer maxPokerNumberOfBlack = convertPoker(maxPokerOfBlack.getNumber());
-        Integer maxPokerNumberOfWhite = convertPoker(maxPokerOfWhite.getNumber());
-
+        Integer maxPokerNumberOfBlack = convertPoker(getMaxPoker(blackPokers).getNumber());
+        Integer maxPokerNumberOfWhite = convertPoker(getMaxPoker(whitePokers).getNumber());
         if (maxPokerNumberOfBlack > maxPokerNumberOfWhite) {
             return "Black wins. - with high card: " + map.get(maxPokerNumberOfBlack);
         }
@@ -29,10 +26,6 @@ public class PokersService {
     }
 
     public Poker getMaxPoker(List<Poker> pokers) {
-        Poker filterPoker = pokers.stream().filter(poker -> poker.getNumber().equals(1)).findFirst().orElse(null);
-        if (filterPoker != null) {
-            return filterPoker;
-        }
         return pokers.stream().max((o1, o2) -> {
             Integer i1 = convertPoker(o1.getNumber());
             Integer i2 = convertPoker(o2.getNumber());
