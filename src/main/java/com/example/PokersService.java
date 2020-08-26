@@ -1,12 +1,25 @@
 package com.example;
 
+import java.util.*;
+
 public class PokersService {
     public String comparePokers(String[] blackPokers, String[] whitePokers) {
         return "White wins. - with high card: Ace";
     }
 
     public String getMaxPoker(String[] pokers) {
-        return "KD";
+        String[][] pokerDetail = generatePokers(pokers);
+        List<String> strings = new ArrayList<>();
+        for (int i = 0; i < pokerDetail.length; i++) {
+            strings.add(pokerDetail[i][0]);
+        }
+        Optional<Integer> max = strings.stream().map(Integer::parseInt).max((o1, o2) -> {
+            if (o1==1 || o2==1){
+               return 1;
+            }
+            return o1.compareTo(o2);
+        });
+        return max.get().toString();
     }
 
     public String convertPoker(String poker) {

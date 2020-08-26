@@ -21,12 +21,12 @@ public class PokerHandsTest {
     @Test
     public void should_return_max_poker_when_get_max_poker_given_pokers() {
         //given
-        String[] pokers = {"2H", "3D", "5S", "9C", "KD"};
+        String[] pokers = {"2H", "3D", "5S", "9C", "13D"};
         //when
         PokersService pokersService = new PokersService();
         String maxPoker = pokersService.getMaxPoker(pokers);
         //then
-        assertEquals(maxPoker, "KD");
+        assertEquals(maxPoker, "13");
     }
 
     @Test
