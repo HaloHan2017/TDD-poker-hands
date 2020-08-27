@@ -35,6 +35,9 @@ public class PokersService {
     }
 
     private int getPriorityOfPokers(List<Poker> pokers) {
+        if (PokerUtil.hasFlush(pokers)) {
+            return 5;
+        }
         if (PokerUtil.hasStraight(pokers)) {
             return 4;
         }

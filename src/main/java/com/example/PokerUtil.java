@@ -59,4 +59,10 @@ public class PokerUtil {
         }
         return true;
     }
+
+    public static boolean hasFlush(List<Poker> pokers) {
+        Map<String, Long> map = pokers.stream().map(Poker::getType).
+                collect(Collectors.groupingBy(Function.identity(), Collectors.counting()));
+        return map.size() == 1;
+    }
 }
