@@ -91,4 +91,8 @@ public class PokerUtil {
         }
         return (pokers.size() - map.size() == 3) && (count == 1);
     }
+
+    public static boolean hasStraightFlush(List<Poker> pokers) {
+        return hasStraight(pokers) && hasFlush(pokers);
+    }
 }
