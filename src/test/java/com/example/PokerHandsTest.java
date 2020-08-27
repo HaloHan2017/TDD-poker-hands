@@ -26,7 +26,7 @@ public class PokerHandsTest {
         PokersService pokersService = new PokersService();
         String result = pokersService.comparePokers(blackPokers, whitePokers);
         //then
-        assertEquals(result, "White wins. - with high card: Ace");
+        assertEquals(result, "White wins.");
     }
 
     @Test

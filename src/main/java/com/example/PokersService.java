@@ -1,20 +1,12 @@
 package com.example;
 
-import java.util.HashMap;
 import java.util.List;
-import java.util.Map;
 
 import static com.example.PokerUtil.convertPoker;
 
 public class PokersService {
-    private Map<Integer, String> map = new HashMap<>();
-
-    {
-        map.put(11, "Jack");
-        map.put(12, "Queen");
-        map.put(13, "King");
-        map.put(14, "Ace");
-    }
+    private static final String WHITE_WINS = "White wins.";
+    private static final String BLACK_WINS = "Black wins.";
 
     public String comparePokers(List<Poker> blackPokers, List<Poker> whitePokers) {
         int priorityOfBlackPokers = getPriorityOfPokers(blackPokers);
@@ -24,13 +16,13 @@ public class PokersService {
             Integer maxPokerNumberOfBlack = convertPoker(getMaxPoker(blackPokers).getNumber());
             Integer maxPokerNumberOfWhite = convertPoker(getMaxPoker(whitePokers).getNumber());
             if (maxPokerNumberOfBlack > maxPokerNumberOfWhite) {
-                return "Black wins. - with high card: " + map.get(maxPokerNumberOfBlack);
+                return BLACK_WINS;
             }
-            return "White wins. - with high card: " + map.get(maxPokerNumberOfWhite);
+            return WHITE_WINS;
         } else if (priorityOfBlackPokers < priorityOfWhitePokers) {
-            return "White wins.";
+            return WHITE_WINS;
         } else {
-            return "Black wins.";
+            return BLACK_WINS;
         }
     }
 
