@@ -24,21 +24,31 @@ public class PokerUtil {
         }
     }
 
-    public static boolean hasOnePair(List<Poker> pokers) {
+    private static Map<String, Long> getContainerMap(List<Poker> pokers) {
         Map<String, Long> map = pokers.stream().map(Poker::getNumber).
                 collect(Collectors.groupingBy(Function.identity(), Collectors.counting()));
-        return pokers.size()-1 == map.size();
+        return map;
+    }
+
+    public static boolean hasOnePair(List<Poker> pokers) {
+        Map<String, Long> map = getContainerMap(pokers);
+        return pokers.size() - 1 == map.size();
     }
 
     public static boolean hasTwoPair(List<Poker> pokers) {
-        Map<String, Long> map = pokers.stream().map(Poker::getNumber).
-                collect(Collectors.groupingBy(Function.identity(), Collectors.counting()));
+        Map<String, Long> map = getContainerMap(pokers);
         int count = 0;
         for (Long value : map.values()) {
-            if(value == 2){
+            if (value == 2) {
                 count++;
             }
         }
         return count == 2;
     }
+
+    public static boolean hasThreeKinds(List<Poker> pokers) {
+        Map<String, Long> map = getContainerMap(pokers);
+        return (pokers.size() - map.size() == 2) && !hasTwoPair(pokers);
+    }
+
 }

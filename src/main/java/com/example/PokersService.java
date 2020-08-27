@@ -35,11 +35,14 @@ public class PokersService {
     }
 
     private int getPriorityOfPokers(List<Poker> pokers) {
+        if (PokerUtil.hasThreeKinds(pokers)) {
+            return 3;
+        }
+        if (PokerUtil.hasTwoPair(pokers)) {
+            return 2;
+        }
         if (PokerUtil.hasOnePair(pokers)) {
             return 1;
-        }
-        if(PokerUtil.hasTwoPair(pokers)){
-            return 2;
         }
         return 0;
     }
