@@ -1,5 +1,6 @@
 package com.example;
 
+import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 import java.util.function.Function;
@@ -64,5 +65,19 @@ public class PokerUtil {
         Map<String, Long> map = pokers.stream().map(Poker::getType).
                 collect(Collectors.groupingBy(Function.identity(), Collectors.counting()));
         return map.size() == 1;
+    }
+
+    public static boolean hasFullHouse(List<Poker> pokers) {
+        Map<String, Long> map = getContainerMap(pokers);
+        if(map.size() != 2){
+            return false;
+        }
+        int count = 0;
+        for (Long value : map.values()) {
+            if(value != 2 && value != 3){
+                count ++;
+            }
+        }
+        return count == 0;
     }
 }
