@@ -33,6 +33,38 @@ public class PokerHandsTest {
                 new Poker("3", "D"));
     }
 
+    private List<Poker> getStraightPokers() {
+        return Arrays.asList(new Poker("3", "H"),
+                new Poker("4", "D"),
+                new Poker("5", "S"),
+                new Poker("6", "C"),
+                new Poker("7", "D"));
+    }
+
+    private List<Poker> getFlushPokers() {
+        return Arrays.asList(new Poker("2", "H"),
+                new Poker("3", "H"),
+                new Poker("5", "H"),
+                new Poker("9", "H"),
+                new Poker("8", "H"));
+    }
+
+    private List<Poker> getFullHousePokers() {
+        return Arrays.asList(new Poker("3", "H"),
+                new Poker("3", "D"),
+                new Poker("5", "S"),
+                new Poker("5", "C"),
+                new Poker("3", "C"));
+    }
+
+    private List<Poker> getFourKindsPokers() {
+        return Arrays.asList(new Poker("3", "H"),
+                new Poker("3", "D"),
+                new Poker("3", "S"),
+                new Poker("5", "C"),
+                new Poker("3", "C"));
+    }
+
     @Test
     public void should_return_compare_result_when_compare_pokers_given_white_pokers_max() {
         //given
@@ -163,11 +195,7 @@ public class PokerHandsTest {
     public void should_return_compare_result_when_compare_pokers_given_straight_poker() {
         //given
         List<Poker> blackPokers = getThreeKindsPokers();
-        List<Poker> whitePokers = Arrays.asList(new Poker("3", "H"),
-                new Poker("4", "D"),
-                new Poker("5", "S"),
-                new Poker("6", "C"),
-                new Poker("7", "D"));
+        List<Poker> whitePokers = getStraightPokers();
         //when
         PokersService pokersService = new PokersService();
         String result = pokersService.comparePokers(blackPokers, whitePokers);
@@ -178,16 +206,8 @@ public class PokerHandsTest {
     @Test
     public void should_return_compare_result_when_compare_pokers_given_flush_poker() {
         //given
-        List<Poker> blackPokers = Arrays.asList(new Poker("3", "H"),
-                new Poker("4", "D"),
-                new Poker("5", "S"),
-                new Poker("6", "C"),
-                new Poker("7", "D"));
-        List<Poker> whitePokers = Arrays.asList(new Poker("2", "H"),
-                new Poker("3", "H"),
-                new Poker("5", "H"),
-                new Poker("9", "H"),
-                new Poker("8", "H"));
+        List<Poker> blackPokers = getStraightPokers();
+        List<Poker> whitePokers = getFlushPokers();
         //when
         PokersService pokersService = new PokersService();
         String result = pokersService.comparePokers(blackPokers, whitePokers);
@@ -198,16 +218,8 @@ public class PokerHandsTest {
     @Test
     public void should_return_compare_result_when_compare_pokers_given_full_house_poker() {
         //given
-        List<Poker> blackPokers = Arrays.asList(new Poker("2", "H"),
-                new Poker("3", "H"),
-                new Poker("5", "H"),
-                new Poker("9", "H"),
-                new Poker("8", "H"));
-        List<Poker> whitePokers = Arrays.asList(new Poker("3", "H"),
-                new Poker("3", "D"),
-                new Poker("5", "S"),
-                new Poker("5", "C"),
-                new Poker("3", "C"));
+        List<Poker> blackPokers = getFlushPokers();
+        List<Poker> whitePokers = getFullHousePokers();
         //when
         PokersService pokersService = new PokersService();
         String result = pokersService.comparePokers(blackPokers, whitePokers);
@@ -218,16 +230,8 @@ public class PokerHandsTest {
     @Test
     public void should_return_compare_result_when_compare_pokers_given_four_kinds_poker() {
         //given
-        List<Poker> blackPokers = Arrays.asList(new Poker("3", "H"),
-                new Poker("3", "D"),
-                new Poker("5", "S"),
-                new Poker("5", "C"),
-                new Poker("3", "C"));
-        List<Poker> whitePokers = Arrays.asList(new Poker("3", "H"),
-                new Poker("3", "D"),
-                new Poker("3", "S"),
-                new Poker("5", "C"),
-                new Poker("3", "C"));
+        List<Poker> blackPokers = getFullHousePokers();
+        List<Poker> whitePokers = getFourKindsPokers();
         //when
         PokersService pokersService = new PokersService();
         String result = pokersService.comparePokers(blackPokers, whitePokers);
@@ -238,11 +242,7 @@ public class PokerHandsTest {
     @Test
     public void should_return_compare_result_when_compare_pokers_given_straight_flush_poker() {
         //given
-        List<Poker> blackPokers = Arrays.asList(new Poker("3", "H"),
-                new Poker("3", "D"),
-                new Poker("3", "S"),
-                new Poker("5", "C"),
-                new Poker("3", "C"));
+        List<Poker> blackPokers = getFourKindsPokers();
         List<Poker> whitePokers = Arrays.asList(new Poker("3", "C"),
                 new Poker("4", "C"),
                 new Poker("5", "C"),
