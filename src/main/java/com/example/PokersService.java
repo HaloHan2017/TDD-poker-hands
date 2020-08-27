@@ -30,13 +30,16 @@ public class PokersService {
         } else if (priorityOfBlackPokers < priorityOfWhitePokers) {
             return "White wins.";
         } else {
-            return null;
+            return "Black wins.";
         }
     }
 
     private int getPriorityOfPokers(List<Poker> pokers) {
         if (PokerUtil.hasOnePair(pokers)) {
             return 1;
+        }
+        if(PokerUtil.hasTwoPair(pokers)){
+            return 2;
         }
         return 0;
     }

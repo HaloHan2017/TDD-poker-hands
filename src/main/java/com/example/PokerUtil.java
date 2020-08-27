@@ -29,4 +29,16 @@ public class PokerUtil {
                 collect(Collectors.groupingBy(Function.identity(), Collectors.counting()));
         return pokers.size()-1 == map.size();
     }
+
+    public static boolean hasTwoPair(List<Poker> pokers) {
+        Map<String, Long> map = pokers.stream().map(Poker::getNumber).
+                collect(Collectors.groupingBy(Function.identity(), Collectors.counting()));
+        int count = 0;
+        for (Long value : map.values()) {
+            if(value == 2){
+                count++;
+            }
+        }
+        return count == 2;
+    }
 }
