@@ -134,4 +134,24 @@ public class PokerHandsTest {
         //then
         assertEquals(result, "White wins.");
     }
+
+    @Test
+    public void should_return_compare_result_when_compare_pokers_given_three_kinds_poker() {
+        //given
+        List<Poker> blackPokers = Arrays.asList(new Poker("3", "H"),
+                new Poker("3", "D"),
+                new Poker("5", "S"),
+                new Poker("9", "C"),
+                new Poker("5", "D"));
+        List<Poker> whitePokers = Arrays.asList(new Poker("3", "H"),
+                new Poker("3", "D"),
+                new Poker("5", "S"),
+                new Poker("9", "C"),
+                new Poker("3", "D"));
+        //when
+        PokersService pokersService = new PokersService();
+        String result = pokersService.comparePokers(blackPokers, whitePokers);
+        //then
+        assertEquals(result, "White wins.");
+    }
 }
