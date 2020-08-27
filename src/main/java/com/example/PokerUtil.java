@@ -51,4 +51,12 @@ public class PokerUtil {
         return (pokers.size() - map.size() == 2) && !hasTwoPair(pokers);
     }
 
+    public static boolean hasStraight(List<Poker> pokers) {
+        for (int i = 1; i < pokers.size(); i++) {
+            if (Integer.parseInt(pokers.get(i).getNumber()) - Integer.parseInt(pokers.get(i - 1).getNumber()) != 1) {
+                return false;
+            }
+        }
+        return true;
+    }
 }
