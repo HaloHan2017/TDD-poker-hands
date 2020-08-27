@@ -80,4 +80,15 @@ public class PokerUtil {
         }
         return count == 0;
     }
+
+    public static boolean hasFourKinds(List<Poker> pokers) {
+        Map<String, Long> map = getContainerMap(pokers);
+        int count = 0;
+        for (Long value : map.values()) {
+            if(value == 4){
+                count = 1;
+            }
+        }
+        return (pokers.size() - map.size() == 3) && (count == 1);
+    }
 }
