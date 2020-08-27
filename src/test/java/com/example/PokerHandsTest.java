@@ -9,6 +9,14 @@ import java.util.List;
 import static org.junit.Assert.assertEquals;
 
 public class PokerHandsTest {
+    private List<Poker> getOnePairPokers() {
+        return Arrays.asList(new Poker("3", "H"),
+                new Poker("3", "D"),
+                new Poker("5", "C"),
+                new Poker("9", "C"),
+                new Poker("K", "D"));
+    }
+
     @Test
     public void should_return_compare_result_when_compare_pokers_given_white_pokers_max() {
         //given
@@ -103,11 +111,7 @@ public class PokerHandsTest {
                 new Poker("5", "S"),
                 new Poker("9", "C"),
                 new Poker("A", "D"));
-        List<Poker> whitePokers = Arrays.asList(new Poker("3", "H"),
-                new Poker("3", "D"),
-                new Poker("5", "C"),
-                new Poker("9", "C"),
-                new Poker("K", "D"));
+        List<Poker> whitePokers = getOnePairPokers();
         //when
         PokersService pokersService = new PokersService();
         String result = pokersService.comparePokers(blackPokers, whitePokers);
@@ -118,11 +122,7 @@ public class PokerHandsTest {
     @Test
     public void should_return_compare_result_when_compare_pokers_given_two_pair_poker() {
         //given
-        List<Poker> blackPokers = Arrays.asList(new Poker("3", "H"),
-                new Poker("3", "D"),
-                new Poker("5", "C"),
-                new Poker("9", "C"),
-                new Poker("K", "D"));
+        List<Poker> blackPokers = getOnePairPokers();
         List<Poker> whitePokers = Arrays.asList(new Poker("3", "H"),
                 new Poker("3", "D"),
                 new Poker("5", "S"),
